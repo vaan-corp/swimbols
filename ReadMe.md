@@ -1,8 +1,5 @@
-# Template for [XcodeGen](https://github.com/yonaskolb/XcodeGen)
+# [Swimbols](https://apps.apple.com/app/id1525226399?platform=mac)
 
 ### To get started
-- Open `project.yml`, `Configs/common.xcconfig` and `create-project.sh` files
-- Search for word `template` and replace with names related to your app and organization
-- Set your team's ID in `Configs/Common.xcconfig`. (Xcode will complain after generating the project if you skip this step)
-- Save your changes
+- Install [Xcodegen](https://github.com/yonaskolb/XcodeGen), [SwiftLint](https://github.com/realm/SwiftLint)
 - Open Terminal in the root folder and run `make app`

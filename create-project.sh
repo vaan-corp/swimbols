@@ -1,4 +1,4 @@
-APP_NAME="Template"
+APP_NAME="Swimbols"
 
 echo "☠️  Killing Xcode..."
 killall Xcode 2>/dev/null
