@@ -11,10 +11,10 @@ import Cocoa
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+  
   var window: NSWindow!
-
-
+  
+  
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     // Create the SwiftUI view that provides the window contents.
     //        let contentView = ContentView()
@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Toolbar **needs** a delegate
     setupMenu()
     NSToolbar.taskListToolbar.delegate = self
-
+    
     // Create the window and set the content view.
     window = NSWindow(
       contentRect: NSRect(x: 0, y: 0, width: 1600, height: 1600),
@@ -49,15 +49,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //        window.contentView = NSHostingView(rootView: contentView)
     window.makeKeyAndOrderFront(nil)
   }
-
+  
   func applicationWillTerminate(_ aNotification: Notification) {
     // Insert code here to tear down your application
   }
-
+  
   func applicationWillBecomeActive(_ notification: Notification) {
     ProductState.updateCount()
   }
-
+  
   func setupMenu() {
     let swimbolMenu = NSMenu()
     swimbolMenu.addItem(withTitle: "Show/Hide Sidebar", action: #selector(Router.shared.splitVC.toggleSidebar), keyEquivalent: "0")
@@ -72,45 +72,45 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     editMenu.addItem(withTitle: "Find Symbol",
                      action: #selector(startSearch), keyEquivalent: "f")
     //        NSApplication.shared.mainMenu = menu
-
+    
     let mainMenu = NSMenu()
-
+    
     let swimbolMenuItem = NSMenuItem()
     mainMenu.addItem(swimbolMenuItem)
     mainMenu.setSubmenu(swimbolMenu, for:swimbolMenuItem)
-
+    
     let editMenuItem = NSMenuItem()
     mainMenu.addItem(editMenuItem)
     mainMenu.setSubmenu(editMenu, for: editMenuItem)
-
+    
     let windowsMenu = NSMenu(title: "Window")
     windowsMenu.addItem(withTitle: "Main Window", action: #selector(bringToFront), keyEquivalent: "m")
-
+    
     let windowsMenuItem = NSMenuItem()
     mainMenu.addItem(windowsMenuItem)
     mainMenu.setSubmenu(windowsMenu, for: windowsMenuItem)
-
+    
     NSApplication.shared.mainMenu = mainMenu
   }
-
+  
   @objc func bringToFront() {
     for window in NSApplication.shared.windows {
       window.makeKeyAndOrderFront(nil)
     }
   }
-
+  
   @objc func copyCode() {
     guard ProductStore.shared.isPurchased else {
-//      SFPreferences.shared.showUpgradeScreen = true
+      //      SFPreferences.shared.showUpgradeScreen = true
       return
     }
     SFPreferences.shared.copyCode()
   }
-
+  
   @objc func startSearch() {
     Router.shared.splitVC.iconsVC.startSearch()
   }
-
+  
   @objc func toggleFavorites() {
     "menu item to toggle favorites called".log()
     //        iconsVC.updateFavorites()
