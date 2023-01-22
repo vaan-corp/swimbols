@@ -4,6 +4,8 @@ configs:
   Release: release
 
 options:
+  minimumXcodeGenVersion: 2.30.0
+  xcodeVersion: 13.0
   usesTabs: false
   indentWidth: 2
   tabWidth: 2
@@ -14,6 +16,21 @@ options:
 
 attributes:
   ORGANIZATIONNAME: Vaan Corporation
+
+packages:
+  SFSafeSymbols:
+    url: https://github.com/SFSafeSymbols/SFSafeSymbols
+    from: 4.1.0
+  CanvasKit:
+    path: ../../Frameworks/CanvasKit
+#    url: https://github.com/skydevz/canvas-kit
+#    from: 0.1.0
+  MIDataStore:
+    url: https://github.com/imthath-m/mi-data-store
+    from: 0.1.0
+  Purchases:
+    url: https://github.com/RevenueCat/purchases-ios
+    from: 4.17.2
 
 targets:
   Swimbols-macOS:
@@ -27,6 +44,13 @@ targets:
     postCompileScripts:
       - name: SwiftLint
         script: ./lint.sh
+        basedOnDependencyAnalysis: false
+    dependencies:
+      - package: SFSafeSymbols
+      - package: CanvasKit
+      - package: MIDataStore
+      - package: Purchases
+        product: RevenueCat
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX)
@@ -36,6 +60,7 @@ targets:
       Release:
         CODE_SIGN_STYLE: Automatic
         CODE_SIGN_IDENTITY: "Apple Distribution"
+
   Swimbols-iOS:
     type: application
     platform: iOS
@@ -47,6 +72,12 @@ targets:
     postCompileScripts:
       - name: SwiftLint
         script: ./lint.sh
+    dependencies:
+      - package: SFSafeSymbols
+      - package: CanvasKit
+      - package: MIDataStore
+      - package: Purchases
+        product: RevenueCat
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX)
