@@ -5,8 +5,8 @@
 //  Created by Imthathullah M on 10/10/20.
 //
 
-import Cocoa
 import CanvasKit
+import Cocoa
 
 protocol SidebarDelegate: class {
   func selected(_ category: SWCategory)
@@ -16,7 +16,6 @@ class SidebarVC: NSViewController,
                  NSTableViewDelegate,
                  NSTableViewDataSource,
                  NSFetchedResultsControllerDelegate {
-  
   // MARK: Constants
   var minWidth: CGFloat { Constant.sidebarWidth }
   
@@ -55,7 +54,6 @@ class SidebarVC: NSViewController,
     } catch let error {
       debugPrint("\(error)")
     }
-    
   }
   
   override func viewDidLayout() {
@@ -109,7 +107,7 @@ class SidebarVC: NSViewController,
     
     let imageView = NSImageView()
     imageView.image = NSImage(systemSymbolName: category.displayIcon, accessibilityDescription: nil)
-    //?.withSymbolConfiguration(NSImage.SymbolConfiguration(scale: .large))
+    // ?.withSymbolConfiguration(NSImage.SymbolConfiguration(scale: .large))
     //        imageView.image =
     imageView.contentTintColor = NSColor.controlAccentColor
     
@@ -145,7 +143,7 @@ class SidebarVC: NSViewController,
   }
   
   // MARK: NSFetchedResultsControllerDelegate:
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?){
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
     switch type {
     case .insert:
       if let newIndexPath = newIndexPath {
@@ -182,6 +180,5 @@ class SidebarVC: NSViewController,
   
   func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     tableView.endUpdates()
-  }
-  
+  }  
 }

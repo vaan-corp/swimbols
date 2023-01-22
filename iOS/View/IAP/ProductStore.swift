@@ -6,10 +6,10 @@
 //  Copyright © 2020 Imthath. All rights reserved.
 //
 
-import Foundation
-import RevenueCat
 import CanvasKit
 import Combine
+import Foundation
+import RevenueCat
 
 enum ProductState: Int {
   case installed = 0
@@ -21,7 +21,6 @@ enum ProductState: Int {
 }
 
 extension ProductState {
-  
   @CVDefault("productState", defaultValue: 0)
   static var storedRawValue: Int
   
@@ -32,7 +31,6 @@ extension ProductState {
 }
 
 class ProductStore: ObservableObject {
-  
   private init() {
     Purchases.debugLogsEnabled = true
     Purchases.configure(withAPIKey: "llpbLrfUNbLfquPckapPWFDZZlHFxSSK")
@@ -126,8 +124,7 @@ class ProductStore: ObservableObject {
 }
 
 // MARK: Static strings
-extension ProductStore {
-  
+extension ProductStore {  
   static var ENTITLEMENT_ID: String { "paid" }
   
   static var MONTHLY_ID: String { "$rc_monthly" }

@@ -5,15 +5,14 @@
 //  Created by Imthathullah M on 13/10/20.
 //
 
-import Cocoa
 import CanvasKit
+import Cocoa
 
 protocol AvailableModifiersDelegate: class {
   func added(_ modifier: Modifier)
 }
 
 class AvailableModifiersVC: SDTableViewController {
-  
   var allCases: [ModifierType] {
     [.padding(.equal(value: 10)),
      .imageScale(.medium),
@@ -23,15 +22,14 @@ class AvailableModifiersVC: SDTableViewController {
      .foreground(.crossPlatform(.blue)),
      .cornerRadius(10),
      .clip(.circle),
-     .rotation(CVAngle(value: 15, unit: .degrees))//,
+     .rotation(CVAngle(value: 15, unit: .degrees)),// ,
      //         .imageMode(.original)
     ]
   }
   
   var modifiers: [Modifier] {
     allCases.compactMap { type in
-      if type.canAddMultiple || !SFPreferences.shared.model.hasModifier(of: type)
-      { return Modifier(type: type) }
+      if type.canAddMultiple || !SFPreferences.shared.model.hasModifier(of: type) { return Modifier(type: type) }
       
       return nil
     }
@@ -72,7 +70,6 @@ class AvailableModifiersVC: SDTableViewController {
 }
 
 class AvailableModifierView: FlippedView {
-  
   lazy var iconView = NSImageView()
   lazy var nameField = NSTextField()
   lazy var plusButton = NSImageView()
@@ -106,7 +103,7 @@ class AvailableModifierView: FlippedView {
   func configureViews() {
     let image = NSImage(systemSymbolName: "plus.circle.fill", accessibilityDescription: nil)
     plusButton.image = image
-    //?.withSymbolConfiguration(NSImage.SymbolConfiguration(scale: .large))
+    // ?.withSymbolConfiguration(NSImage.SymbolConfiguration(scale: .large))
   }
   
   func layoutViews() {

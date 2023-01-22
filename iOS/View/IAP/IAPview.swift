@@ -5,10 +5,10 @@
 //  Created by Imthath M on 19/07/20.
 //
 
-import SwiftUI
-import RevenueCat
 import CanvasKit
+import RevenueCat
 import StoreKit
+import SwiftUI
 
 public enum SwimbolVersion {
   case lite, pro
@@ -45,7 +45,6 @@ public enum SwimbolVersion {
 }
 
 struct IAPphone: View {
-  
   @Environment(\.presentationMode) var presentationMode
   
   @ObservedObject var productStore = ProductStore.shared
@@ -81,7 +80,7 @@ struct IAPphone: View {
           Button("Swimbols Lite") {
             showLiteView = true
           }
-          .sheet(isPresented: $showLiteView, content: { LiteView() } )
+          .sheet(isPresented: $showLiteView, content: { LiteView() })
           .padding(.leading)
         }
         Spacer()
@@ -92,7 +91,6 @@ struct IAPphone: View {
       PackageGroup()
         .padding(.bottom)
       FeaturesText(version: .pro)
-      
     }
     .padding(EdgeInsets(top: 10, leading: 10.0, bottom: 44, trailing: 10.0))
     .simpleAlert(isPresented: $productStore.showAlert, title: productStore.alertTitle, message: productStore.alertMessage)
@@ -100,7 +98,6 @@ struct IAPphone: View {
 }
 
 struct LiteView: View {
-  
   @Environment(\.presentationMode) var presentationMode
   
   var body: some View {
@@ -123,12 +120,10 @@ struct LiteView: View {
     .clipped()
     .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all))
     .navigationBarHidden(true)
-    
   }
 }
 
 struct PackageGroup: View {
-  
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @ObservedObject var productStore = ProductStore.shared
   
@@ -201,7 +196,7 @@ struct PackageGroup: View {
         productStore.isLoading = true
         Purchases.shared.restorePurchases { (purchaserInfo, error) in
           productStore.isLoading = false
-          //... check purchaserInfo to see if entitlement is now active
+          // ... check purchaserInfo to see if entitlement is now active
           if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENT_ID] {
             "\(paidEntitlement)".log()
             if paidEntitlement.isActive {
@@ -220,7 +215,6 @@ struct PackageGroup: View {
 }
 
 struct PackageView: View {
-  
   //    @State var isLoading = false
   @ObservedObject var productStore = ProductStore.shared
   var package: Package
@@ -269,7 +263,6 @@ struct PackageView: View {
       purchaseError.localizedDescription.log()
       productStore.handle(purchaseError)
     }
-    
   }
   
   var price: String {
@@ -296,7 +289,7 @@ struct PackageView: View {
   }
 }
 
-//struct PurchaseItem: View {
+// struct PurchaseItem: View {
 //
 //    var identifier: String
 //    var localizedPrice: String
@@ -319,8 +312,7 @@ struct PackageView: View {
 //    var body: some View {
 //
 //    }
-//}
-
+// }
 
 struct IAPphone_Previews: PreviewProvider {
   static var previews: some View {

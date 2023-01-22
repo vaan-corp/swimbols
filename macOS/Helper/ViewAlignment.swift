@@ -8,7 +8,6 @@
 import Cocoa
 
 public extension NSView {
-  
   @discardableResult func align(_ type1: NSLayoutConstraint.Attribute,
                                 with view: NSView? = nil, on type2: NSLayoutConstraint.Attribute? = nil,
                                 offset constant: CGFloat = 0,
@@ -96,7 +95,6 @@ public extension NSView {
 
 // fixing sizes
 public extension NSView {
-  
   enum SizeAttribute {
     case height
     case width
@@ -127,7 +125,6 @@ public extension NSView {
     self.widthAnchor.constraint(lessThanOrEqualToConstant: width).isActive = true
   }
   
-  
   func minHeight(_ width: CGFloat) {
     translatesAutoresizingMaskIntoConstraints = false
     self.heightAnchor.constraint(greaterThanOrEqualToConstant: width).isActive = true
@@ -157,7 +154,7 @@ public extension NSView {
     }
   }
   
-  /// updates the semantic content attribute direction for this view based on the SDK language
+  // updates the semantic content attribute direction for this view based on the SDK language
   //    func updateLayoutDirection() {
   //        if NSView.isForcedRTL {
   //            semanticContentAttribute = .forceRightToLeft
@@ -169,7 +166,6 @@ public extension NSView {
 
 // alignment for notched displays, iOS 11+
 public extension NSView {
-  
   //    enum SideAttribute {
   //        case leading
   //        case trailing

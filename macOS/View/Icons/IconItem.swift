@@ -5,8 +5,8 @@
 //  Created by Imthathullah M on 12/10/20.
 //
 
-import Cocoa
 import CanvasKit
+import Cocoa
 
 protocol IconItemDelegate: class {
   func updateFavorites()
@@ -80,7 +80,6 @@ final class IconItem: NSCollectionViewItem {
   }
   
   func configureViews() {
-    
     borderView.wantsLayer = true
     borderView.layer?.borderWidth = 1
     borderView.layer?.cornerRadius = .small
@@ -122,8 +121,7 @@ final class IconItem: NSCollectionViewItem {
   }
 }
 
-extension IconItem: IconViewDelegate {
-  
+extension IconItem: IconViewDelegate {  
   var isFavorite: Bool {
     icon?.isFavorite ?? false
   }

@@ -5,8 +5,8 @@
 //  Created by Imthathullah M on 12/10/20.
 //
 
-import Cocoa
 import CanvasKit
+import Cocoa
 
 protocol IconViewDelegate: class {
   func highlightItem()
@@ -15,8 +15,7 @@ protocol IconViewDelegate: class {
   var isFavorite: Bool { get }
 }
 
-class IconView: FlippedView {
-  
+class IconView: FlippedView {  
   weak var delegate: IconViewDelegate?
   
   var isFavorite: Bool { delegate?.isFavorite ?? false }
@@ -52,4 +51,3 @@ extension IconView: NSMenuDelegate {
     delegate?.removeHighlight()
   }
 }
-

@@ -22,7 +22,6 @@ struct OnboardingModel {
 }
 
 struct OnboardingView<Content>: View where Content: View {
-  
   @Environment(\.horizontalSizeClass) var sizeClass
   var model: OnboardingModel
   var content: () -> Content
@@ -64,7 +63,7 @@ struct OnboardingView<Content>: View where Content: View {
   let columns = [
     GridItem(.flexible()),
     GridItem(.flexible()),
-    GridItem(.flexible())
+    GridItem(.flexible()),
   ]
   
   var detailGrid: some View {
@@ -143,7 +142,6 @@ struct DetailModel {
 }
 
 struct DetailView: View {
-  
   var model: DetailModel
   
   var body: some View {
@@ -168,7 +166,6 @@ struct DetailView: View {
 }
 
 struct OnboardingView_Previews: PreviewProvider {
-  
   static var detailModel: DetailModel {
     DetailModel(title: "Adjust preview scale", description: "The preview scale will size up the symbol to help you design pixel perfect symbols.", imageName: "rectangle.and.arrow.up.right.and.arrow.down.left", imageColor: Color.purple.opacity(0.9))
   }
@@ -186,8 +183,7 @@ extension View {
   }
 }
 
-struct RoundedCorner: Shape {
-  
+struct RoundedCorner: Shape {  
   var radius: CGFloat = .infinity
   var corners: UIRectCorner = .allCorners
   

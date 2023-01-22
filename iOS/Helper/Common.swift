@@ -6,18 +6,16 @@
 //  Copyright © 2020 Imthath. All rights reserved.
 //
 
-import SwiftUI
 import CanvasKit
+import SwiftUI
 
 class PadColor: SystemColor {
   var textBackground: Color { Color(.secondarySystemBackground) }
   
   var tertiaryLabel: Color { Color(.tertiaryLabel) }
-  
 }
 
 public struct CardButtonStyle: ButtonStyle {
-  
   let backgroundColor: Color
   let textColor: Color
   let height: CGFloat
@@ -50,7 +48,6 @@ public struct CardButtonStyle: ButtonStyle {
 }
 
 public struct ActivityIndicator: UIViewRepresentable {
-  
   @Binding var isAnimating: Bool
   let style: UIActivityIndicatorView.Style
   
@@ -64,13 +61,12 @@ public struct ActivityIndicator: UIViewRepresentable {
 }
 
 public extension ActivityIndicator {
-  static var large: some View  {
+  static var large: some View {
     ActivityIndicator(isAnimating: .constant(true), style: .large)
   }
 }
 
 extension View {
-  
   func simpleAlert(isPresented: Binding<Bool>, title: String = "Alert", message: String) -> some View {
     return self.alert(isPresented: isPresented, content: {
       Alert(title: Text(title), message: Text(message))
@@ -92,10 +88,8 @@ class AnyGestureRecognizer: UIGestureRecognizer {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
     if let touchedView = touches.first?.view, touchedView is UIControl {
       state = .cancelled
-      
     } else if let touchedView = touches.first?.view as? UITextView, touchedView.isEditable {
       state = .cancelled
-      
     } else {
       state = .began
     }
@@ -112,7 +106,7 @@ class AnyGestureRecognizer: UIGestureRecognizer {
 
 extension SceneDelegate: UIGestureRecognizerDelegate {
   func addTapGestrureRecognizer() {
-    let tapGesture = AnyGestureRecognizer(target: window, action:#selector(UIView.endEditing))
+    let tapGesture = AnyGestureRecognizer(target: window, action: #selector(UIView.endEditing))
     tapGesture.requiresExclusiveTouchType = false
     tapGesture.cancelsTouchesInView = false
     tapGesture.delegate = self
@@ -143,7 +137,6 @@ extension String {
 import SwiftUI
 
 struct PreviewProviderModifier: ViewModifier {
-  
   /// Whether or not a basic light mode preview is included in the group.
   var includeLightMode: Bool
   
@@ -183,11 +176,9 @@ struct PreviewProviderModifier: ViewModifier {
       }
     }
   }
-  
 }
 
 extension View {
-  
   /// Creates a group of views with various environment settings that are useful for previews.
   ///
   /// - Parameters:
@@ -205,6 +196,5 @@ extension View {
       )
     )
   }
-  
 }
 #endif

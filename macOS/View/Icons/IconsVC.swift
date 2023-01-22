@@ -5,16 +5,15 @@
 //  Created by Imthathullah M on 11/10/20.
 //
 
-import Cocoa
 import CanvasKit
-//import HotKey
+import Cocoa
+// import HotKey
 
 protocol IconsDelegate: class {
   func selectedIcon(_ icon: SWIcon)
 }
 
 class IconsVC: NSViewController, IconItemDelegate {
-  
   lazy var collectionView = NSCollectionView(frame: view.frame)
   lazy var scrollView = NSScrollView(frame: view.frame)
   lazy var category: SWCategory? = nil
@@ -149,10 +148,10 @@ class IconsVC: NSViewController, IconItemDelegate {
     
     if isSearching {
       self.view.window?.subtitle = "Search results in \(category.displayValue)"
-      icons = category.sortedSymbols.filter({ $0.identifier!.localizedCaseInsensitiveContains(searchItem.searchField.stringValue)})
+      icons = category.sortedSymbols.filter({ $0.identifier!.localizedCaseInsensitiveContains(searchItem.searchField.stringValue) })
     } else if showingFavorites {
       self.view.window?.subtitle = "Favorites in \(category.displayValue)"
-      icons = category.sortedSymbols.filter({ $0.isFavorite } )
+      icons = category.sortedSymbols.filter({ $0.isFavorite })
     } else {
       self.view.window?.subtitle = category.displayValue
     }
@@ -162,7 +161,6 @@ class IconsVC: NSViewController, IconItemDelegate {
 }
 
 extension IconsVC: NSCollectionViewDataSource {
-  
   func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
     if showingFavorites || isSearching {
       return icons.count
@@ -199,13 +197,10 @@ extension IconsVC: NSCollectionViewDataSource {
     
     return category?.sortedSymbols[safe: indexPath.item]
   }
-  
 }
 
 extension IconsVC: NSCollectionViewDelegateFlowLayout {
-  
   func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-    
     guard let indexPath = indexPaths.first,
           let icon = icon(at: indexPath.item) else { return }
     
@@ -231,11 +226,9 @@ extension IconsVC: NSCollectionViewDelegateFlowLayout {
     //            return
     //        }
     
-    
   }
   
   func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-    
     return NSSize(
       width: Constant.collectionCellWidth,
       height: Constant.collectionCellHeight

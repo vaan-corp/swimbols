@@ -81,4 +81,3 @@ struct BottomSheetView_Previews: PreviewProvider {
     }.edgesIgnoringSafeArea(.all)
   }
 }
-

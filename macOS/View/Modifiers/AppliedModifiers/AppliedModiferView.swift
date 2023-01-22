@@ -5,8 +5,8 @@
 //  Created by Imthathullah M on 13/10/20.
 //
 
-import Cocoa
 import CanvasKit
+import Cocoa
 
 protocol AppliedModifierDelegate: class {
   func takeUp(_ modifier: Modifier, from index: Int)
@@ -15,7 +15,6 @@ protocol AppliedModifierDelegate: class {
 }
 
 class AppliedModifierView: FlippedView {
-  
   lazy var popupButton = NSPopUpButton(frame: NSRect(), pullsDown: false)
   lazy var stepper = NSStepper(frame: NSRect())
   lazy var valueField = NSTextField()
@@ -89,7 +88,6 @@ class AppliedModifierView: FlippedView {
   }
   
   func configureViews(for modifier: Modifier) {
-    
   }
   
   func layoutViews(for modifier: Modifier) {
@@ -281,6 +279,5 @@ class AppliedModifierView: FlippedView {
   //    }
 }
 
-extension AppliedModifierView: NSMenuDelegate {
-  
+extension AppliedModifierView: NSMenuDelegate {  
 }

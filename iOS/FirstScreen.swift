@@ -40,7 +40,6 @@ struct OnboardingWrapper: View {
   }
 }
 
-
 struct FirstScreen_Previews: PreviewProvider {
   static var previews: some View {
     FirstScreen()
