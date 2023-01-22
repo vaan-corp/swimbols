@@ -14,7 +14,7 @@ struct IconText: View {
     var version: SwimbolVersion
     
     var body: some View {
-        Image("cornerFilled")
+        Image("app-icon")
             .resizable()
             .scaledToFill()
             .frame(width: 96, height: 96, alignment: .center)
