@@ -22,9 +22,9 @@ packages:
     url: https://github.com/SFSafeSymbols/SFSafeSymbols
     from: 4.1.0
   CanvasKit:
-    path: ../../Frameworks/CanvasKit
-#    url: https://github.com/skydevz/canvas-kit
-#    from: 0.1.0
+#    path: ../../Frameworks/CanvasKit
+    url: https://github.com/skydevz/canvas-kit
+    from: 0.1.1
   MIDataStore:
     url: https://github.com/imthath-m/mi-data-store
     from: 0.1.0

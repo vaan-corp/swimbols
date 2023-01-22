@@ -10,12 +10,12 @@ import SwiftUI
 
 struct FirstScreen: View {
   @ObservedObject var productStore = ProductStore.shared
-
+  
   var body: some View {
     currentView
       .accentColor(.pink)
   }
-
+  
   @ViewBuilder var currentView: some View {
     switch productStore.state {
     case .installed: OnboardingWrapper()
@@ -28,11 +28,11 @@ struct FirstScreen: View {
 
 struct OnboardingWrapper: View {
   @State var showIAPview = false
-
+  
   var body: some View {
     onboarding
   }
-
+  
   var onboarding: some View {
     OnboardingView(model: OnboardingModel.current, content: {
       OnboardingSheet(showIAPview: $showIAPview, secondaryButtonColor: OnboardingModel.current.backgroundColor)
@@ -42,7 +42,7 @@ struct OnboardingWrapper: View {
 
 
 struct FirstScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        FirstScreen()
-    }
+  static var previews: some View {
+    FirstScreen()
+  }
 }
