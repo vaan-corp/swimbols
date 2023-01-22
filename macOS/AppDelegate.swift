@@ -10,11 +10,9 @@ import CanvasKit
 import Cocoa
 import SwiftUI
 
-class AppDelegate: NSObject, NSApplicationDelegate {
-  
+class AppDelegate: NSObject, NSApplicationDelegate {  
   var window: NSWindow!
-  
-  
+    
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     // Create the SwiftUI view that provides the window contents.
     //        let contentView = ContentView()
@@ -77,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let swimbolMenuItem = NSMenuItem()
     mainMenu.addItem(swimbolMenuItem)
-    mainMenu.setSubmenu(swimbolMenu, for:swimbolMenuItem)
+    mainMenu.setSubmenu(swimbolMenu, for: swimbolMenuItem)
     
     let editMenuItem = NSMenuItem()
     mainMenu.addItem(editMenuItem)

@@ -5,22 +5,21 @@
 //  Created by Imthathullah M on 12/10/20.
 //
 
-import Cocoa
 import CanvasKit
+import Cocoa
 
 protocol AppliedModifiersDelegate: class {
   func reloadAllModifiers()
 }
 
 class AppliedModifiersVC: SDTableViewController {
-  
   var model: ViewModel { preferences.model }
   
   var preferences: SFPreferences
   
   weak var delegate: AppliedModifiersDelegate?
   
-  init(_ preferences:SFPreferences) {
+  init(_ preferences: SFPreferences) {
     self.preferences = preferences
     super.init(nibName: nil, bundle: nil)
   }
@@ -85,7 +84,6 @@ class AppliedModifiersVC: SDTableViewController {
 }
 
 extension AppliedModifiersVC: AppliedModifierDelegate {
-  
   func takeUp(_ modifier: Modifier, from index: Int) {
     guard index > 0 else { return }
     preferences.model.modifiers.move(fromOffsets: IndexSet(integer: index), toOffset: index-1)
@@ -106,7 +104,7 @@ extension AppliedModifiersVC: AppliedModifierDelegate {
   }
 }
 
-//MARK:- row action delegate
+// MARK: row action delegate
 extension AppliedModifiersVC {
   func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
     guard edge == .trailing else {
@@ -130,9 +128,8 @@ extension AppliedModifiersVC {
   }
 }
 
-//MARK:- drag and drop delegates
+// MARK: drag and drop delegates
 extension AppliedModifiersVC {
-  
   func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
     guard let data = try? JSONEncoder().encode(modifiers[row]),
           let string = String(data: data, encoding: .utf8) else {
@@ -143,7 +140,6 @@ extension AppliedModifiersVC {
   }
   
   func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
-    
     guard dropOperation == .above,
           let dragSource = info.draggingSource as? NSTableView,
           tableView == dragSource else {
@@ -155,8 +151,7 @@ extension AppliedModifiersVC {
     return .move
   }
   
-  func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
-    
+  func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {    
     /* Read the pasteboard items and ensure there is at least one item,
      find the string of the first pasteboard item and search the datasource
      for the index of the matching string */
@@ -168,7 +163,6 @@ extension AppliedModifiersVC {
           let index = modifiers.firstIndex(where: { $0.id == modifier.id }) else {
       "Unable to accept drop info".log()
       return false
-      
     }
     
     /* Animate the move to the rows in the table view. The ternary operator
@@ -179,8 +173,6 @@ extension AppliedModifiersVC {
     
     let indexset = IndexSet(integer: index)
     preferences.model.modifiers.move(fromOffsets: indexset, toOffset: row)
-    
-    
     tableView.reloadData()
     return true
   }

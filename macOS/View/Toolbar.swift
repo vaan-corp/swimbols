@@ -7,8 +7,8 @@
 //
 
 import AppKit
-import SwiftUI
 import CanvasKit
+import SwiftUI
 
 extension NSToolbarItem.Identifier {
   static let sidebar = NSToolbarItem.Identifier(rawValue: "sidebar")
@@ -106,14 +106,12 @@ extension AppDelegate: NSToolbarDelegate {
     paletteLabel: String,
     toolTip: String,
     itemContent: NSView) -> NSToolbarItem? {
-      
       let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
       
       toolbarItem.label = label
       toolbarItem.paletteLabel = paletteLabel
       toolbarItem.toolTip = toolTip
-      /**
-       You don't need to set a `target` if you know what you are doing.
+      /* You don't need to set a `target` if you know what you are doing.
        
        In this example, AppDelegate is also the toolbar delegate.
        
@@ -138,5 +136,4 @@ extension AppDelegate: NSToolbarDelegate {
       
       return toolbarItem
     }
-  
 }

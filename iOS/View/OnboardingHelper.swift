@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct OnboardingSheet: View {
-  
   @Environment(\.horizontalSizeClass) var sizeClass
   @State var showMobileView = false
   @Binding var showIAPview: Bool
@@ -62,7 +61,7 @@ struct OnboardingSheet: View {
       self.showIAPview = true
     }
     .buttonStyle(CardButtonStyle(backgroundColor: .accentColor, textColor: .white, height: 55)).padding(.horizontal, 22)
-    .sheet(isPresented: $showIAPview, content: { IAPphone(showCloseButton: true)})
+    .sheet(isPresented: $showIAPview, content: { IAPphone(showCloseButton: true) })
   }
 }
 
@@ -83,7 +82,7 @@ extension DetailModel {
       //            DetailModel(title: "Instant switches", description: "Change the symbol anytime with just a tap. All the selected modifiers are applied to this new symbol and the preview never stops.", imageName: "photo.on.rectangle.angled", imageColor: Color.green),
       DetailModel(title: "Adjust preview scale", description: "The preview scale will size up the symbol to help you design pixel perfect symbols.", imageName: "rectangle.and.arrow.up.right.and.arrow.down.left", imageColor: Color.purple),
       DetailModel(title: "Code is the result", description: "You can copy the code of your designed symbol to use in your SwiftUI or UIKit project. The best handoff ever.", imageName: "curlybraces", imageColor: Color.orange),
-      DetailModel(title: "Save your favorites", description: "Do you keep using some symbols often? Save them to your favorite list for instant access.", imageName: "heart", imageColor: Color.red)
+      DetailModel(title: "Save your favorites", description: "Do you keep using some symbols often? Save them to your favorite list for instant access.", imageName: "heart", imageColor: Color.red),
     ]
   }
 }

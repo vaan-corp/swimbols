@@ -5,13 +5,12 @@
 //  Created by Imthathullah M on 10/10/20.
 //
 
-import SwiftUI
-import Cocoa
 import CanvasKit
+import Cocoa
 import StoreKit
+import SwiftUI
 
 class Router {
-  
   private init() { }
   
   static let shared = Router()
@@ -71,13 +70,12 @@ struct ContentWrapper: View {
 }
 
 class SplitVC: NSSplitViewController {
-  
   @ObservedObject var pref = SFPreferences.shared
   
   lazy var sidebarVC = SidebarVC()
   lazy var iconsVC = IconsVC()
   lazy var contentVC = NSHostingController(rootView: ContentWrapper())
-  lazy var modifiersVC = ModifiersSplitVC(pref) //ModifiersVC(pref)
+  lazy var modifiersVC = ModifiersSplitVC(pref) // ModifiersVC(pref)
   
   lazy var sidebarItem = NSSplitViewItem(sidebarWithViewController: sidebarVC)
   lazy var iconsItem = NSSplitViewItem(viewController: iconsVC)
@@ -135,7 +133,6 @@ class SplitVC: NSSplitViewController {
 }
 
 extension SplitVC: SidebarDelegate {
-  
   func selected(_ category: SWCategory) {
     SFPreferences.shared.cdCategory = category
     iconsVC.update(category)
@@ -143,7 +140,6 @@ extension SplitVC: SidebarDelegate {
 }
 
 extension SplitVC: IconsDelegate {
-  
   func selectedIcon(_ icon: SWIcon) {
     //        if pref.icon == nil {
     //            addSplitViewItem(modifiersItem)

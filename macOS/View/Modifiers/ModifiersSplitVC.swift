@@ -5,11 +5,10 @@
 //  Created by Imthathullah M on 13/10/20.
 //
 
-import Cocoa
 import CanvasKit
+import Cocoa
 
 class ModifiersSplitVC: NSSplitViewController {
-  
   var model: ViewModel { preferences.model }
   
   var preferences: SFPreferences
@@ -20,7 +19,7 @@ class ModifiersSplitVC: NSSplitViewController {
   lazy var appliedItem = NSSplitViewItem(viewController: appliedVC)
   lazy var availableItem = NSSplitViewItem(viewController: availableVC)
   
-  init(_ preferences:SFPreferences) {
+  init(_ preferences: SFPreferences) {
     self.preferences = preferences
     super.init(nibName: nil, bundle: nil)
     self.splitView.isVertical = false
@@ -35,7 +34,6 @@ class ModifiersSplitVC: NSSplitViewController {
 }
 
 extension ModifiersSplitVC: AvailableModifiersDelegate {
-  
   func added(_ modifier: Modifier) {
     guard !preferences.model.properties.isEmpty else { return }
     

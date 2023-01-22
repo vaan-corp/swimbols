@@ -6,11 +6,10 @@
 //  Copyright © 2020 Imthath. All rights reserved.
 //
 
-import SwiftUI
 import CanvasKit
+import SwiftUI
 
 struct PriceCard: View {
-  
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   
   var price: String
@@ -54,7 +53,6 @@ struct PriceCard: View {
 }
 
 public struct PurchaseCompletedView: View {
-  
   //    var isRestored: Bool
   @ObservedObject var productStore = ProductStore.shared
   @Environment(\.presentationMode ) var presentationMode
@@ -101,7 +99,6 @@ public struct PurchaseCompletedView: View {
 }
 
 struct IconText: View {
-  
   var version: SwimbolVersion
   
   var body: some View {
@@ -164,7 +161,6 @@ struct TermsView: View {
               }
             Spacer()
           }
-          
         }
         .padding()
       }
@@ -177,7 +173,6 @@ struct TermsView: View {
 }
 
 struct FeaturesText: View {
-  
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @Environment(\.presentationMode) var presentationMode
   
@@ -246,7 +241,6 @@ struct FeaturesText: View {
           self.presentationMode.wrappedValue.dismiss()
         }
         .buttonStyle(CardButtonStyle(backgroundColor: Color(.secondarySystemGroupedBackground), textColor: .accentColor))
-        
       }
       secondaryButtons.padding(.top)
     }

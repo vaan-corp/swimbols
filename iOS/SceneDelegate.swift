@@ -5,9 +5,9 @@
 //  Created by Imthath on 07.03.21.
 //
 
+import CanvasKit
 import SwiftUI
 import UIKit
-import CanvasKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?

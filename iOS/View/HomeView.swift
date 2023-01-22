@@ -5,11 +5,10 @@
 //  Created by Imthath M on 19/07/20.
 //
 
-import SwiftUI
 import CanvasKit
+import SwiftUI
 
 struct MobileView: View {
-  
   //    @State var store: ViewModel = SFPreferences.shared.model
   @State var isOpen = false
   let color: SystemColor = PadColor()
@@ -123,7 +122,6 @@ struct MobileView: View {
           .navigationBarTitle("")
           .navigationBarHidden(true)
       }
-      
     }
   }
   
@@ -185,8 +183,7 @@ struct MobileView: View {
   }
 }
 
-public struct AdaptiveStack<Content: View>: View {
-  
+public struct AdaptiveStack<Content: View>: View {  
   @Environment(\.verticalSizeClass) var verticalSizeClass
   
   var content: Content

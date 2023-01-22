@@ -5,8 +5,8 @@
 //  Created by Imthath on 07.03.21.
 //
 
-import UIKit
 import CanvasKit
+import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

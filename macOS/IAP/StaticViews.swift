@@ -6,11 +6,10 @@
 //  Copyright © 2020 Imthath. All rights reserved.
 //
 
-import SwiftUI
 import CanvasKit
+import SwiftUI
 
 struct IconText: View {
-  
   var version: SwimbolVersion
   
   var body: some View {
@@ -76,7 +75,6 @@ struct TermsView: View {
             }
           Spacer()
         }
-        
       }
       .padding()
     }
@@ -86,7 +84,6 @@ struct TermsView: View {
 }
 
 struct FeaturesText: View {
-  
   @Environment(\.presentationMode) var presentationMode
   
   @State var showTerms = false

@@ -5,13 +5,12 @@
 //  Created by Imthathullah M on 11/10/20.
 //
 
-import Cocoa
 import AppKit
 import CanvasKit
+import Cocoa
 import SwiftUI
 
 public struct ActivityIndicator: NSViewRepresentable {
-  
   public typealias NSViewType = NSProgressIndicator
   
   @Binding var isAnimating: Bool
@@ -31,7 +30,6 @@ public struct ActivityIndicator: NSViewRepresentable {
 }
 
 public struct CardButtonStyle: ButtonStyle {
-  
   let backgroundColor: Color
   let textColor: Color
   let height: CGFloat
@@ -64,7 +62,6 @@ public struct CardButtonStyle: ButtonStyle {
 }
 
 extension View {
-  
   func centerHorizontally() -> some View {
     HStack {
       Spacer()
@@ -99,7 +96,6 @@ class FlippedView: NSView {
 class SDTableViewController: NSViewController,
                              NSTableViewDelegate,
                              NSTableViewDataSource {
-  
   lazy var scrollView = NSScrollView()
   lazy var tableView = EditableTableView()
   
@@ -146,7 +142,6 @@ public extension Constant {
 }
 
 class Message {
-  
   static func categoryMissing(at index: Int) -> String {
     "Unable to fetch category from CoreData at index \(index)"
   }
@@ -173,14 +168,12 @@ class Message {
 }
 
 class EditableTableView: NSTableView {
-  
   override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
     return true
   }
 }
 
 extension NSTextField {
-  
   static func plain(with string: String = "") -> NSTextField {
     let field = NSTextField(frame: NSRect())
     field.stringValue = string
@@ -193,7 +186,6 @@ extension NSTextField {
 }
 
 extension NSPopUpButton {
-  
   func addOptions<T: CaseIterable & Displayable>(from enumeration: T) {
     for option in T.self.allCases {
       addItem(withTitle: option.displayValue)
@@ -205,7 +197,6 @@ extension NSPopUpButton {
 }
 
 extension NSViewController {
-  
   func configure(_ tableView: NSTableView, in scrollView: NSScrollView, columnWidth: CGFloat = Constant.sidebarWidth) {
     tableView.frame = scrollView.bounds
     tableView.headerView = nil
@@ -245,7 +236,6 @@ public extension NSApplication {
 }
 
 public extension String {
-  
   func log(file: String = #file,
            functionName: String = #function,
            lineNumber: Int = #line) {

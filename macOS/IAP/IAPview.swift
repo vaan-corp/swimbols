@@ -5,9 +5,9 @@
 //  Created by Imthath M on 19/07/20.
 //
 
-import SwiftUI
-import RevenueCat
 import CanvasKit
+import RevenueCat
+import SwiftUI
 
 public enum SwimbolVersion {
   case lite, pro
@@ -44,7 +44,6 @@ public enum SwimbolVersion {
 }
 
 struct IAPphone: View {
-  
   @Environment(\.presentationMode) var presentationMode
   
   @ObservedObject var productStore = ProductStore.shared
@@ -83,7 +82,6 @@ struct IAPphone: View {
             label: {
               Text("Swimbols Lite")
             })
-          
         }
         Spacer()
       }
@@ -93,7 +91,6 @@ struct IAPphone: View {
       PackageGroup()
         .padding(.bottom)
       FeaturesText(version: .pro)
-      
     }
     .padding(EdgeInsets(top: 10, leading: 10.0, bottom: 44, trailing: 10.0))
     
@@ -102,7 +99,6 @@ struct IAPphone: View {
 }
 
 struct LiteView: View {
-  
   @Environment(\.presentationMode) var presentationMode
   
   var body: some View {
@@ -135,7 +131,6 @@ struct LiteView: View {
 }
 
 struct PackageGroup: View {
-  
   @ObservedObject var productStore = ProductStore.shared
   @State var showPurchaseCompletedView = false
   var body: some View {
@@ -194,7 +189,7 @@ struct PackageGroup: View {
         productStore.isLoading = true
         Purchases.shared.restorePurchases { (purchaserInfo, error) in
           productStore.isLoading = false
-          //... check purchaserInfo to see if entitlement is now active
+          // ... check purchaserInfo to see if entitlement is now active
           if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENT_ID] {
             "\(paidEntitlement)".log()
             if paidEntitlement.isActive {
@@ -246,7 +241,6 @@ struct PackageGroup: View {
       purchaseError.localizedDescription.log()
       productStore.handle(purchaseError)
     }
-    
   }
   
   func setPurchased() {
@@ -257,7 +251,6 @@ struct PackageGroup: View {
     NSToolbar.removeUpgradeButton()
   }
 }
-
 
 struct IAPphone_Previews: PreviewProvider {
   static var previews: some View {
