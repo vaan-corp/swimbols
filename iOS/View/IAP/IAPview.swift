@@ -224,11 +224,13 @@ struct PackageView: View {
       .contentShape(Rectangle())
       .onTapGesture {
         productStore.isLoading = true
+        // swiftlint:disable all
         Purchases.shared.purchase(package: package, completion: handlePurchase)
+        // swiftlint:enable all
       }
   }
   
-  @MainActor @Sendable
+  @MainActor
   func handlePurchase(transaction: StoreTransaction?, purchaserInfo: CustomerInfo?, error: NSError?, userCancelled: Bool) {
     productStore.isLoading = false
     

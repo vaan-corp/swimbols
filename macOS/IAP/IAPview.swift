@@ -207,8 +207,7 @@ struct PackageGroup: View {
         }
       }
   }
-  
-  @MainActor @Sendable
+@MainActor
   func handlePurchase(transaction: StoreTransaction?, purchaserInfo: CustomerInfo?, error: Error?, userCancelled: Bool) {
     productStore.isLoading = false
     

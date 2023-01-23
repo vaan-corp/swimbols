@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-fileprivate enum Constants {
+private enum Constants {
   static let radius: CGFloat = 16
   static let indicatorHeight: CGFloat = 6
   static let indicatorWidth: CGFloat = 60
@@ -58,7 +58,7 @@ struct BottomSheetView<Content: View>: View {
       .cornerRadius(Constants.radius)
       .frame(height: geometry.size.height, alignment: .bottom)
       .offset(y: max(self.offset + self.translation, 0))
-      .animation(.interactiveSpring())
+      .animation(Animation.interactiveSpring(), value: offset) // doubtful
       .gesture(
         DragGesture().updating(self.$translation) { value, state, _ in
           state = value.translation.height

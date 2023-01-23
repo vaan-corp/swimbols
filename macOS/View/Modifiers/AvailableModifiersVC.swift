@@ -8,7 +8,7 @@
 import CanvasKit
 import Cocoa
 
-protocol AvailableModifiersDelegate: class {
+protocol AvailableModifiersDelegate: AnyObject {
   func added(_ modifier: Modifier)
 }
 

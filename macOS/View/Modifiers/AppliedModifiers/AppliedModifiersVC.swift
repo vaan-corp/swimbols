@@ -8,7 +8,7 @@
 import CanvasKit
 import Cocoa
 
-protocol AppliedModifiersDelegate: class {
+protocol AppliedModifiersDelegate: AnyObject {
   func reloadAllModifiers()
 }
 
