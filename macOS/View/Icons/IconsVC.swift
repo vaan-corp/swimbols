@@ -148,7 +148,8 @@ class IconsVC: NSViewController, IconItemDelegate {
     
     if isSearching {
       self.view.window?.subtitle = "Search results in \(category.displayValue)"
-      icons = category.sortedSymbols.filter({ $0.identifier!.localizedCaseInsensitiveContains(searchItem.searchField.stringValue) })
+      icons = category.sortedSymbols.filter({ $0.identifier!.localizedCaseInsensitiveContains(
+        searchItem.searchField.stringValue) })
     } else if showingFavorites {
       self.view.window?.subtitle = "Favorites in \(category.displayValue)"
       icons = category.sortedSymbols.filter({ $0.isFavorite })
@@ -169,7 +170,8 @@ extension IconsVC: NSCollectionViewDataSource {
     return category?.symbols?.count ?? 0
   }
   
-  func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+  func collectionView(_ collectionView: NSCollectionView,
+                      itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
     guard let icon = getIcon(at: indexPath) else {
       Message.iconMissing(at: indexPath.item).log()
       return NSCollectionViewItem()
@@ -228,7 +230,8 @@ extension IconsVC: NSCollectionViewDelegateFlowLayout {
     
   }
   
-  func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+  func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> NSSize {
     return NSSize(
       width: Constant.collectionCellWidth,
       height: Constant.collectionCellHeight

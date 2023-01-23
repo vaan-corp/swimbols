@@ -82,7 +82,7 @@ class ProductStore: ObservableObject {
   
   private func updatePurchaserInfo() {
     Purchases.shared.getCustomerInfo { info, error in
-      if let paidEntitlement = info?.entitlements[ProductStore.ENTITLEMENT_ID] {
+      if let paidEntitlement = info?.entitlements[ProductStore.ENTITLEMENTID] {
         "\(paidEntitlement)".log()
         if paidEntitlement.isActive {
           if !self.isPurchased {
@@ -142,21 +142,27 @@ class ProductStore: ObservableObject {
 
 // MARK: Static strings
 extension ProductStore {
-  static var ENTITLEMENT_ID: String { "paid" }
+  static var ENTITLEMENTID: String { "paid" }
   
-  static var MONTHLY_ID: String { "$rc_monthly" }
-  static var YEARLY_ID: String { "$rc_annual" }
-  static var LIFETIME_ID: String { "$rc_lifetime" }
+  static var MONTHLYID: String { "$rc_monthly" }
+  static var YEARLYID: String { "$rc_annual" }
+  static var LIFETIMEID: String { "$rc_lifetime" }
   
   //    static var accountError: St
   static var paymentsNotAllowed: String { "Payments not allowed"}
   static var unauthorizedUser: String {
-    "We are unable to process payments from this account. Kindly check your account information under App Store Settting and try again."
+    """
+    We are unable to process payments from this account. \
+    Kindly check your account information under App Store Settting and try again.
+    """
   }
   
   //    static var whatSt
   static var userCancelled: String {
-    "We are sad to see you change your mind and not continue with the purchase. Kindly send us your feedback to let us know on how to improve."
+    """
+    We are sad to see you change your mind and not continue with the purchase. \
+    Kindly send us your feedback to let us know on how to improve.
+    """
   }
   
   static var generalError: String {
@@ -167,7 +173,9 @@ extension ProductStore {
   static var purchaseFailure: String { "Purchase failed" }
   static var purchaseExpiredTitle: String { "Purchase expired" }
   static var connectionFailure: String { "Connection failed" }
-  static var networkError: String { "We are unable to connect to the App Store. Kindly check your internet connection and try again." }
+  static var networkError: String {
+    "We are unable to connect to the App Store. Kindly check your internet connection and try again."
+  }
   static var appStoreError: String { "We are unable to connect to App Store at the moment. Please try again later." }
   static var purchaseExpiredMessage: String {
     "We have noticed that your purchase has expired. Kindly purchase again to continue using and supporting Swimbols."

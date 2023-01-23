@@ -58,7 +58,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   func setupMenu() {
     let swimbolMenu = NSMenu()
-    swimbolMenu.addItem(withTitle: "Show/Hide Sidebar", action: #selector(Router.shared.splitVC.toggleSidebar), keyEquivalent: "0")
+    swimbolMenu.addItem(withTitle: "Show/Hide Sidebar",
+                        action: #selector(Router.shared.splitVC.toggleSidebar), keyEquivalent: "0")
     swimbolMenu.addItem(withTitle: "Show/Hide Favorites",
                         action: #selector(toggleFavorites), keyEquivalent: "h")
     swimbolMenu.addItem(withTitle: "Quit Swimbols",

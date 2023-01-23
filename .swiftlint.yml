@@ -12,8 +12,8 @@ disabled_rules:
   - cyclomatic_complexity
   - unused_setter_value
   - trailing_whitespace
-  - line_length # temporarily disabled
-  - identifier_name # temporarily disabled
+#  - line_length # temporarily disabled
+#  - identifier_name # temporarily disabled
 
 opt_in_rules:
   - array_init

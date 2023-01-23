@@ -140,12 +140,16 @@ struct TermsView: View {
       ScrollView {
         VStack(alignment: .leading, spacing: 15) {
           Text("""
-                        Swimbols provides a swifty and fun way to work with SF Symbols. Do the searching, designing and then changing symbols all in one place, and take your code with you.
-                        
-                        You can use Swimbols Lite for free with limited features. You can upgrade to Swimbols Pro to unlock all features by opting for a monthly subscription or an yearly subscription. Initially, for a limited period, we are also providing a launch offer - a one time purchase.
-                        
-                        You can cancel anytime 24 hours before the end of the current period, so that you will not be charged for the next period.
-                        """)
+                Swimbols provides a swifty and fun way to work with SF Symbols. Do the searching, \
+                designing and then changing symbols all in one place, and take your code with you.
+                
+                You can use Swimbols Lite for free with limited features. You can upgrade to Swimbols Pro to unlock \
+                all features by opting for a monthly subscription or an yearly subscription. Initially, for a limited \
+                period, we are also providinga launch offer - a one time purchase.
+                
+                You can cancel anytime 24 hours before the end of the current period, so that you will not be charged \
+                for the next period.
+                """)
           
           Button("Contact us") {
             CustomApp.openURL("mailto:imthath.m@icloud.com?subject=\(subject.encoded)")
@@ -215,10 +219,13 @@ struct FeaturesText: View {
         Button("Continue with Lite") {
           ProductStore.shared.state = .limited
         }
-        .buttonStyle(CardButtonStyle(backgroundColor: Color(.secondarySystemGroupedBackground), textColor: .primary)).opacity(0.75)
+        .buttonStyle(CardButtonStyle(backgroundColor: Color(.secondarySystemGroupedBackground),
+                                     textColor: .primary)).opacity(0.75)
         
         HStack {
-          Text("You can upgrade to Swimbols Pro anytime. The Pro upgrade includes everything in Lite and the following...")
+          Text(
+            "You can upgrade to Swimbols Pro anytime. The Pro upgrade includes everything in Lite and the following..."
+          )
             .fixedSize(horizontal: false, vertical: true)
           //                    .frame(minHeight: 60)
             .multilineTextAlignment(.leading)
@@ -240,7 +247,8 @@ struct FeaturesText: View {
         Button("Upgrade now") {
           self.presentationMode.wrappedValue.dismiss()
         }
-        .buttonStyle(CardButtonStyle(backgroundColor: Color(.secondarySystemGroupedBackground), textColor: .accentColor))
+        .buttonStyle(CardButtonStyle(backgroundColor: Color(.secondarySystemGroupedBackground),
+                                     textColor: .accentColor))
       }
       secondaryButtons.padding(.top)
     }
@@ -269,13 +277,15 @@ struct FeaturesText: View {
   }
   
   @ViewBuilder var topLabelSet: some View {
-    colorLabel(title: "Browse and search SF Symbols", andImage: "doc.text.magnifyingglass", with: Color.yellow.opacity(0.9))
+    colorLabel(title: "Browse and search SF Symbols", andImage: "doc.text.magnifyingglass",
+               with: Color.yellow.opacity(0.9))
     if version == .pro {
       favLabel
     }
     
     //            colorLabel(title: "Select and modify symbols with SwiftUI modifiers", andImage: "wand.and.stars", with: Color.blue.opacity(0.8))
-    colorLabel(title: "See real time preview as you add, edit or delete modifiers", andImage: "play.fill", with: Color.green.opacity(0.9))
+    colorLabel(title: "See real time preview as you add, edit or delete modifiers",
+               andImage: "play.fill", with: Color.green.opacity(0.9))
   }
   
   var favLabel: some View {
@@ -283,15 +293,18 @@ struct FeaturesText: View {
   }
   
   @ViewBuilder var bottomLabelSet: some View {
-    colorLabel(title: "Scale your preview to help while designing", andImage: "rectangle.and.arrow.up.right.and.arrow.down.left", with: Color.purple.opacity(0.9))
-    colorLabel(title: "Change symbol anytime and see live preview with applied modifiers", andImage: "photo.on.rectangle.angled", with: Color.pink.opacity(0.8))
+    colorLabel(title: "Scale your preview to help while designing",
+               andImage: "rectangle.and.arrow.up.right.and.arrow.down.left", with: Color.purple.opacity(0.9))
+    colorLabel(title: "Change symbol anytime and see live preview with applied modifiers",
+               andImage: "photo.on.rectangle.angled", with: Color.pink.opacity(0.8))
     if version == .pro {
       codeLabel
     }
   }
   
   var codeLabel: some View {
-    colorLabel(title: "Copy Swift code to use in your SwiftUI and UIKit projects", andImage: "curlybraces", with: Color.blue.opacity(0.8))
+    colorLabel(title: "Copy Swift code to use in your SwiftUI and UIKit projects",
+               andImage: "curlybraces", with: Color.blue.opacity(0.8))
   }
   
   func colorLabel(title: String, andImage imageName: String, with color: Color) -> some View {
