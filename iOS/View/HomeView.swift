@@ -34,11 +34,16 @@ struct MobileView: View {
   }
   
   func upgradeAlert() -> Alert {
-    Alert(title: Text("Upgrade Swimbols?"), message: Text(alertMessage), primaryButton: upgradeButton, secondaryButton: cancelButton)
+    Alert(title: Text("Upgrade Swimbols?"), message: Text(alertMessage),
+          primaryButton: upgradeButton, secondaryButton: cancelButton)
   }
   
   var alertMessage: String {
-    "You are currently using Swimbols Lite. \n To save favorites, copy code, export pictures and support the continuous development of the app, please upgrade to Swimbols Pro."
+    """
+    You are currently using Swimbols Lite.
+    To save favorites, copy code, export pictures and support the continuous \
+    development of the app, please upgrade to Swimbols Pro.
+    """
   }
   
   var body: some View {

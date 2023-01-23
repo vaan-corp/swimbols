@@ -236,7 +236,8 @@ public extension NSTableView {
 
 public extension NSApplication {
   func toggleSidebar() {
-    NSApplication.shared.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+    NSApplication.shared.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)),
+                                                                 with: nil)
   }
 }
 

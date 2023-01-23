@@ -117,7 +117,8 @@ extension SceneDelegate: UIGestureRecognizerDelegate {
     window?.addGestureRecognizer(tapGesture)
   }
   
-  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                         shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
     return true
   }
 }
@@ -133,7 +134,10 @@ extension String {
   internal func log(file: String = #file,
                     functionName: String = #function,
                     lineNumber: Int = #line) {
-    print("[SWIMBOLS_\(UIDevice.isPad ?  "iPad" : "iPhone")] \(URL(fileURLWithPath: file).lastPathComponent)-\(functionName):\(lineNumber)  \(self)")
+    print("""
+        [SWIMBOLS_\(UIDevice.isPad ?  "iPad" : "iPhone")] \
+        \(URL(fileURLWithPath: file).lastPathComponent)-\(functionName):\(lineNumber)  \(self)
+        """)
   }
 }
 
@@ -190,7 +194,8 @@ extension View {
   ///   - includeDarkMode: Whether or not a basic dark mode preview is included in the group.
   ///   - includeRightToLeftMode: Whether or not a right-to-left layout preview is included in the group.
   ///   - includeLargeTextMode: Whether or not a preview with large text is included in the group.
-  func makeForPreviewProvider(includeLightMode: Bool = true, includeDarkMode: Bool = true, includeRightToLeftMode: Bool = true, includeLargeTextMode: Bool = true) -> some View {
+  func makeForPreviewProvider(includeLightMode: Bool = true, includeDarkMode: Bool = true,
+                              includeRightToLeftMode: Bool = true, includeLargeTextMode: Bool = true) -> some View {
     modifier(
       PreviewProviderModifier(
         includeLightMode: includeLightMode,

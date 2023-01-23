@@ -94,7 +94,8 @@ struct IAPphone: View {
     }
     .padding(EdgeInsets(top: 10, leading: 10.0, bottom: 44, trailing: 10.0))
     
-    .simpleAlert(isPresented: $productStore.showAlert, title: productStore.alertTitle, message: productStore.alertMessage)
+    .simpleAlert(isPresented: $productStore.showAlert, title: productStore.alertTitle,
+                 message: productStore.alertMessage)
   }
 }
 
@@ -145,16 +146,16 @@ struct PackageGroup: View {
     }
   }
   
-  @State var selection: String = ProductStore.LIFETIME_ID
+  @State var selection: String = ProductStore.LIFETIMEID
   
   @ViewBuilder var radioGroup: some View {
     Text("Upgrade to Swimbols Pro to unlock all features and support the continuous development of the app.")
       .multilineTextAlignment(.center)
       .padding(.top)
     Picker("", selection: $selection, content: {
-      card(forID: ProductStore.MONTHLY_ID).tag(ProductStore.MONTHLY_ID)
-      card(forID: ProductStore.YEARLY_ID).tag(ProductStore.YEARLY_ID)
-      card(forID: ProductStore.LIFETIME_ID).tag(ProductStore.LIFETIME_ID)
+      card(forID: ProductStore.MONTHLYID).tag(ProductStore.MONTHLYID)
+      card(forID: ProductStore.YEARLYID).tag(ProductStore.YEARLYID)
+      card(forID: ProductStore.LIFETIMEID).tag(ProductStore.LIFETIMEID)
     })
     .pickerStyle(RadioGroupPickerStyle())
     
@@ -171,7 +172,10 @@ struct PackageGroup: View {
   
   @ViewBuilder func card(forID productID: String) -> some View {
     if let package = productStore.offering?[productID] {
-      Text("\(Text(package.localizedPriceString).font(.title)), \(package.storeProduct.localizedTitle) \n\(Text(package.storeProduct.localizedDescription).foregroundColor(.secondary))")
+      Text("""
+            \(Text(package.localizedPriceString).font(.title)), \(package.storeProduct.localizedTitle) \
+             \n\(Text(package.storeProduct.localizedDescription).foregroundColor(.secondary))
+            """)
         .padding(.small)
     }
   }
@@ -182,7 +186,10 @@ struct PackageGroup: View {
   }
   
   var restoreText: some View {
-    Text("If you have already purchased Swimbols, you can restore it \(Text("here").foregroundColor(.accentColor).underline()).")
+    Text("""
+        If you have already purchased Swimbols, you can restore it \(Text("here")
+        .foregroundColor(.accentColor).underline()).
+        """)
       .foregroundColor(.secondary)
       .multilineTextAlignment(.center)
       .onTapGesture {
@@ -190,13 +197,15 @@ struct PackageGroup: View {
         Purchases.shared.restorePurchases { (purchaserInfo, error) in
           productStore.isLoading = false
           // ... check purchaserInfo to see if entitlement is now active
-          if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENT_ID] {
+          if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENTID] {
             "\(paidEntitlement)".log()
             if paidEntitlement.isActive {
               setPurchased()
             } else {
               productStore.alertTitle = "Restore failed"
-              productStore.alertMessage = "Kindly ensure you have already bought the product and try restoring again later."
+              productStore.alertMessage = """
+                  Kindly ensure you have already bought the product and try restoring again later.
+                  """
               productStore.showAlert = true
             }
             // Unlock that great "pro" content
@@ -208,7 +217,8 @@ struct PackageGroup: View {
       }
   }
 @MainActor
-  func handlePurchase(transaction: StoreTransaction?, purchaserInfo: CustomerInfo?, error: Error?, userCancelled: Bool) {
+  func handlePurchase(transaction: StoreTransaction?, purchaserInfo: CustomerInfo?,
+                      error: Error?, userCancelled: Bool) {
     productStore.isLoading = false
     
 #if DEBUG
@@ -229,7 +239,7 @@ struct PackageGroup: View {
       productStore.alertTitle = "What stopped you?"
       productStore.alertMessage = ProductStore.userCancelled
       productStore.showAlert = true
-    } else if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENT_ID] {
+    } else if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENTID] {
       "\(paidEntitlement)".log()
       if paidEntitlement.isActive {
         setPurchased()

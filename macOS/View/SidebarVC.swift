@@ -29,7 +29,8 @@ class SidebarVC: NSViewController,
     let fetchRequest: NSFetchRequest<SWCategory> = SWCategory.fetchRequest()
     //        fetchRequest.predicate = predicate ...
     fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \SWCategory.position, ascending: true)]
-    let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: SymbolStore.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+    let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: SymbolStore.shared.context,
+                                          sectionNameKeyPath: nil, cacheName: nil)
     frc.delegate = self
     return frc
   }()
@@ -143,7 +144,9 @@ class SidebarVC: NSViewController,
   }
   
   // MARK: NSFetchedResultsControllerDelegate:
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                  didChange anObject: Any, at indexPath: IndexPath?,
+                  for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
     switch type {
     case .insert:
       if let newIndexPath = newIndexPath {

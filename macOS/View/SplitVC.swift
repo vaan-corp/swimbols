@@ -53,19 +53,28 @@ struct ContentWrapper: View {
   }
   
   func upgradeAlert() -> Alert {
-    Alert(title: Text("Upgrade Swimbols?"), message: Text(alertMessage), primaryButton: upgradeAlertButton, secondaryButton: cancelButton)
+    Alert(title: Text("Upgrade Swimbols?"), message: Text(alertMessage),
+          primaryButton: upgradeAlertButton, secondaryButton: cancelButton)
   }
   
   var alertMessage: String {
-    "You are currently using a free version of Swimbols. To use favorites, copy code and support the continuous development of the app, please upgrade to Swimbols Pro."
+    """
+    You are currently using a free version of Swimbols. To use favorites, copy code and support \
+    the continuous development of the app, please upgrade to Swimbols Pro.
+    """
   }
   
   func thankYouAlert() -> Alert {
-    Alert(title: Text("Thank you for \(productStore.state == .restored ? "continuing with us" : "purchasing")!"), message: Text(messageString), dismissButton: .cancel(Text("Continue")))
+    Alert(title: Text("Thank you for \(productStore.state == .restored ? "continuing with us" : "purchasing")!"),
+          message: Text(messageString), dismissButton: .cancel(Text("Continue")))
   }
   
   var messageString: String {
-    "We are continuously striving to improve your workflow and productivity when working with SF Symbols.\n\nIf you face any issue or would like a new feature, kindly contact us at imthath.m@icloud.com.\n\nWe value your feedback and we are committed to respond within 3 days. "
+    """
+    We are continuously striving to improve your workflow and productivity when working \
+    with SF Symbols.\n\nIf you face any issue or would like a new feature, kindly contact \
+    us at imthath.m@icloud.com.\n\nWe value your feedback and we are committed to respond within 3 days.
+    """
   }
 }
 

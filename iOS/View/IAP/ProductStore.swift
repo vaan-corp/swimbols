@@ -70,7 +70,7 @@ class ProductStore: ObservableObject {
   
   private func updatePurchaserInfo() {
     Purchases.shared.getCustomerInfo { info, error in
-      if let paidEntitlement = info?.entitlements[ProductStore.ENTITLEMENT_ID] {
+      if let paidEntitlement = info?.entitlements[ProductStore.ENTITLEMENTID] {
         "\(paidEntitlement)".log()
         if paidEntitlement.isActive {
           if !self.isPurchased {
@@ -125,19 +125,25 @@ class ProductStore: ObservableObject {
 
 // MARK: Static strings
 extension ProductStore {  
-  static var ENTITLEMENT_ID: String { "paid" }
+  static var ENTITLEMENTID: String { "paid" }
   
-  static var MONTHLY_ID: String { "$rc_monthly" }
-  static var YEARLY_ID: String { "$rc_annual" }
-  static var LIFETIME_ID: String { "$rc_lifetime" }
+  static var MONTHLYID: String { "$rc_monthly" }
+  static var YEARLYID: String { "$rc_annual" }
+  static var LIFETIMEID: String { "$rc_lifetime" }
   
   static var paymentsNotAllowed: String { "Payments not allowed"}
   static var unauthorizedUser: String {
-    "We are unable to process payments from this account. Kindly check your account information under App Store Settting and try again."
+    """
+    We are unable to process payments from this account. Kindly check your account information \
+    under App Store Settting and try again.
+    """
   }
   
   static var userCancelled: String {
-    "We are sad to see you change your mind. Kindly send us your feedback.\n\nBy the way, Swimbols Lite is free forever with limited features. We hope you like it."
+    """
+    We are sad to see you change your mind. Kindly send us your feedback.\n\nBy \
+    the way, Swimbols Lite is free forever with limited features. We hope you like it.
+    """
   }
   
   static var generalError: String {
@@ -147,10 +153,14 @@ extension ProductStore {
   static var purchaseFailure: String { "Purchase failed" }
   static var purchaseExpiredTitle: String { "Purchase expired" }
   static var connectionFailure: String { "Connection failed" }
-  static var networkError: String { "We are unable to connect to the App Store. Kindly check your internet connection and try again." }
+  static var networkError: String {
+    "We are unable to connect to the App Store. Kindly check your internet connection and try again." }
   static var appStoreError: String { "We are unable to connect to App Store at the moment. Please try again later." }
   static var purchaseExpiredMessage: String {
-    "We have noticed that your purchase has expired. Kindly purchase again to continue using all features and support the development of Swimbols."
+    """
+    We have noticed that your purchase has expired. Kindly purchase again to continue using all \
+    features and support the development of Swimbols."
+    """
   }
   
   //    static var MONTHLY_ID: String { "imthath_swimbols_month" }
