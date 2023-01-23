@@ -25,7 +25,11 @@ public struct ActivityIndicator: NSViewRepresentable {
   }
   
   public func updateNSView(_ nsView: NSProgressIndicator, context: Context) {
-    isAnimating ? nsView.startAnimation(nil) : nsView.stopAnimation(nil)
+    if isAnimating {
+      nsView.startAnimation(nil)
+    } else {
+      nsView.stopAnimation(nil)
+    }
   }
 }
 
@@ -104,6 +108,7 @@ class SDTableViewController: NSViewController,
   }
   
   override func viewDidLoad() {
+    super.viewDidLoad()
     scrollView.minWidth(240)
     scrollView.minHeight(330)
     

@@ -44,13 +44,13 @@ extension ProductState {
 
 class ProductStore: ObservableObject {
   private init() {
-    Purchases.debugLogsEnabled = true
+    Purchases.logLevel = .debug // doubtful
     Purchases.configure(withAPIKey: "llpbLrfUNbLfquPckapPWFDZZlHFxSSK")
   }
   
   public static let shared = ProductStore()
   
-  @Published var offering: Offering? = nil
+  @Published var offering: Offering?
   @Published var isLoading: Bool = false
   
   var isPurchased: Bool { state == .purchased }

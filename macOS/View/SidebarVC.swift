@@ -8,7 +8,7 @@
 import CanvasKit
 import Cocoa
 
-protocol SidebarDelegate: class {
+protocol SidebarDelegate: AnyObject {
   func selected(_ category: SWCategory)
 }
 

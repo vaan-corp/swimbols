@@ -8,7 +8,7 @@
 import CanvasKit
 import Cocoa
 
-protocol IconViewDelegate: class {
+protocol IconViewDelegate: AnyObject {
   func highlightItem()
   func removeHighlight()
   func addFavorite()

@@ -8,7 +8,7 @@
 import CanvasKit
 import Cocoa
 
-protocol AppliedModifierDelegate: class {
+protocol AppliedModifierDelegate: AnyObject {
   func takeUp(_ modifier: Modifier, from index: Int)
   func takeDown(_ modifier: Modifier, from index: Int)
   func delete(_ modifier: Modifier, from index: Int)

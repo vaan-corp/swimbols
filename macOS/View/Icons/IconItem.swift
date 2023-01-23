@@ -8,7 +8,7 @@
 import CanvasKit
 import Cocoa
 
-protocol IconItemDelegate: class {
+protocol IconItemDelegate: AnyObject {
   func updateFavorites()
 }
 
@@ -19,8 +19,8 @@ final class IconItem: NSCollectionViewItem {
   lazy var favIcon = NSImageView()
   lazy var borderView = NSView()
   
-  var icon: SWIcon? = nil
-  weak var delegate: IconItemDelegate? = nil
+  var icon: SWIcon?
+  weak var delegate: IconItemDelegate?
   
   override func loadView() {
     let cellView = IconView()
@@ -32,6 +32,7 @@ final class IconItem: NSCollectionViewItem {
   }
   
   override func viewDidLoad() {
+    super.viewDidLoad()
     layoutViews()
     configureViews()
   }

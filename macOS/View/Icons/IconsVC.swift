@@ -9,7 +9,7 @@ import CanvasKit
 import Cocoa
 // import HotKey
 
-protocol IconsDelegate: class {
+protocol IconsDelegate: AnyObject {
   func selectedIcon(_ icon: SWIcon)
 }
 
@@ -18,7 +18,7 @@ class IconsVC: NSViewController, IconItemDelegate {
   lazy var scrollView = NSScrollView(frame: view.frame)
   lazy var category: SWCategory? = nil
   
-  weak var delegate: IconsDelegate? = nil
+  weak var delegate: IconsDelegate?
   var showingFavorites: Bool { favoritesButton.state == .on }
   lazy var isSearching: Bool = false
   lazy var icons = [SWIcon]()
@@ -27,14 +27,14 @@ class IconsVC: NSViewController, IconItemDelegate {
   //    lazy var escKey = HotKey(key: .escape, modifiers: [])
   
   var startSearchButton: NSButton = {
-    let button = NSButton(title: "startSearch", target: self, action: #selector(startSearch))
+    let button = NSButton(title: "startSearch", target: IconsVC.self, action: #selector(startSearch))
     button.keyEquivalent = "f"
     button.keyEquivalentModifierMask = .command
     return button
   }()
   
   var endSearchButton: NSButton = {
-    let button = NSButton(title: "endSearch", target: self, action: #selector(endSearch))
+    let button = NSButton(title: "endSearch", target: IconsVC.self, action: #selector(endSearch))
     button.keyEquivalent = "\u{1b}"
     //        button.keyEquivalentModifierMask = .command
     return button
