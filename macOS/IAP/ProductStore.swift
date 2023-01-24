@@ -82,7 +82,7 @@ class ProductStore: ObservableObject {
   
   private func updatePurchaserInfo() {
     Purchases.shared.getCustomerInfo { info, error in
-      if let paidEntitlement = info?.entitlements[ProductStore.ENTITLEMENTID] {
+      if let paidEntitlement = info?.entitlements[ProductStore.entitlementIdentifier] {
         "\(paidEntitlement)".log()
         if paidEntitlement.isActive {
           if !self.isPurchased {
@@ -142,11 +142,11 @@ class ProductStore: ObservableObject {
 
 // MARK: Static strings
 extension ProductStore {
-  static var ENTITLEMENTID: String { "paid" }
+  static var entitlementIdentifier: String { "paid" }
   
-  static var MONTHLYID: String { "$rc_monthly" }
-  static var YEARLYID: String { "$rc_annual" }
-  static var LIFETIMEID: String { "$rc_lifetime" }
+  static var monthlyIdentifier: String { "$rc_monthly" }
+  static var yearlyIdentifier: String { "$rc_annual" }
+  static var lifetimeIdentifier: String { "$rc_lifetime" }
   
   //    static var accountError: St
   static var paymentsNotAllowed: String { "Payments not allowed"}
@@ -165,9 +165,7 @@ extension ProductStore {
     """
   }
   
-  static var generalError: String {
-    "We are unable to process your request at the moment. Please try again later."
-  }
+  static var generalError: String { "We are unable to process your request at the moment. Please try again later." }
   //    static var paidUser: String { }
   
   static var purchaseFailure: String { "Purchase failed" }

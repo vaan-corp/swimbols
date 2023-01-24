@@ -58,18 +58,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
   func setupMenu() {
     let swimbolMenu = NSMenu()
-    swimbolMenu.addItem(withTitle: "Show/Hide Sidebar",
-                        action: #selector(Router.shared.splitVC.toggleSidebar), keyEquivalent: "0")
-    swimbolMenu.addItem(withTitle: "Show/Hide Favorites",
-                        action: #selector(toggleFavorites), keyEquivalent: "h")
-    swimbolMenu.addItem(withTitle: "Quit Swimbols",
-                        action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+    swimbolMenu.addItem(
+      withTitle: "Show/Hide Sidebar",
+      action: #selector(Router.shared.splitVC.toggleSidebar),
+      keyEquivalent: "0"
+    )
+    swimbolMenu.addItem(
+      withTitle: "Show/Hide Favorites",
+      action: #selector(toggleFavorites),
+      keyEquivalent: "h"
+    )
+    swimbolMenu.addItem(
+      withTitle: "Quit Swimbols",
+      action: #selector(NSApplication.terminate(_:)),
+      keyEquivalent: "q"
+    )
     //        let viewMenu = NSMenu(title: "View")
     let editMenu = NSMenu(title: "Edit")
-    editMenu.addItem(withTitle: "Copy Code",
-                     action: #selector(copyCode), keyEquivalent: "c")
-    editMenu.addItem(withTitle: "Find Symbol",
-                     action: #selector(startSearch), keyEquivalent: "f")
+    editMenu.addItem(
+      withTitle: "Copy Code",
+      action: #selector(copyCode),
+      keyEquivalent: "c"
+    )
+    editMenu.addItem(
+      withTitle: "Find Symbol",
+      action: #selector(startSearch),
+      keyEquivalent: "f"
+    )
     //        NSApplication.shared.mainMenu = menu
     
     let mainMenu = NSMenu()
@@ -83,7 +98,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     mainMenu.setSubmenu(editMenu, for: editMenuItem)
     
     let windowsMenu = NSMenu(title: "Window")
-    windowsMenu.addItem(withTitle: "Main Window", action: #selector(bringToFront), keyEquivalent: "m")
+    windowsMenu.addItem(
+      withTitle: "Main Window",
+      action: #selector(bringToFront),
+      keyEquivalent: "m"
+    )
     
     let windowsMenuItem = NSMenuItem()
     mainMenu.addItem(windowsMenuItem)

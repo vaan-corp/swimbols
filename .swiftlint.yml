@@ -12,8 +12,6 @@ disabled_rules:
   - cyclomatic_complexity
   - unused_setter_value
   - trailing_whitespace
-#  - line_length # temporarily disabled
-#  - identifier_name # temporarily disabled
 
 opt_in_rules:
   - array_init
@@ -46,6 +44,6 @@ identifier_name:
     - os
 
 line_length:
-  warning: 120
-  error: 160
+  warning: 140
+  error: 180
   ignores_comments: true

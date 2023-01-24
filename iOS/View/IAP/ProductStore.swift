@@ -70,7 +70,7 @@ class ProductStore: ObservableObject {
   
   private func updatePurchaserInfo() {
     Purchases.shared.getCustomerInfo { info, error in
-      if let paidEntitlement = info?.entitlements[ProductStore.ENTITLEMENTID] {
+      if let paidEntitlement = info?.entitlements[ProductStore.entitlementIdentifier] {
         "\(paidEntitlement)".log()
         if paidEntitlement.isActive {
           if !self.isPurchased {
@@ -125,11 +125,11 @@ class ProductStore: ObservableObject {
 
 // MARK: Static strings
 extension ProductStore {  
-  static var ENTITLEMENTID: String { "paid" }
+  static var entitlementIdentifier: String { "paid" }
   
-  static var MONTHLYID: String { "$rc_monthly" }
-  static var YEARLYID: String { "$rc_annual" }
-  static var LIFETIMEID: String { "$rc_lifetime" }
+  static var monthlyIdentifier: String { "$rc_monthly" }
+  static var yearlyIdentifier: String { "$rc_annual" }
+  static var lifetimeIdentifier: String { "$rc_lifetime" }
   
   static var paymentsNotAllowed: String { "Payments not allowed"}
   static var unauthorizedUser: String {
@@ -154,7 +154,8 @@ extension ProductStore {
   static var purchaseExpiredTitle: String { "Purchase expired" }
   static var connectionFailure: String { "Connection failed" }
   static var networkError: String {
-    "We are unable to connect to the App Store. Kindly check your internet connection and try again." }
+    "We are unable to connect to the App Store. Kindly check your internet connection and try again."
+  }
   static var appStoreError: String { "We are unable to connect to App Store at the moment. Please try again later." }
   static var purchaseExpiredMessage: String {
     """
@@ -163,7 +164,7 @@ extension ProductStore {
     """
   }
   
-  //    static var MONTHLY_ID: String { "imthath_swimbols_month" }
-  //    static var YEARLY_ID: String { "imthath_swimbols_yearly" }
-  //    static var LIFETIME_ID: String { "imthath_swimbols_lifetime" }
+  //    static var monthlyIdentifier: String { "imthath_swimbols_month" }
+  //    static var yearlyIdentifier: String { "imthath_swimbols_yearly" }
+  //    static var lifetimeIdentifier: String { "imthath_swimbols_lifetime" }
 }
