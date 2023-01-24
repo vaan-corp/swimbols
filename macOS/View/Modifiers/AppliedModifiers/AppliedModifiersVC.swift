@@ -106,8 +106,7 @@ extension AppliedModifiersVC: AppliedModifierDelegate {
 
 // MARK: row action delegate
 extension AppliedModifiersVC {
-  func tableView(_ tableView: NSTableView, rowActionsForRow row: Int,
-                 edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+  func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
     guard edge == .trailing else {
       "No row action specified on leading edge for row \(row)".log()
       return []
@@ -140,15 +139,16 @@ extension AppliedModifiersVC {
     return string as NSString
   }
   
-  func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, 
-                 proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+  func tableView(
+    _ tableView: NSTableView,
+    validateDrop info: NSDraggingInfo,
+    proposedRow row: Int,
+    proposedDropOperation dropOperation: NSTableView.DropOperation
+  ) -> NSDragOperation {
     guard dropOperation == .above,
           let dragSource = info.draggingSource as? NSTableView,
           tableView == dragSource else {
-      """
-      Unable to validate drop for drag operation \(dropOperation) at row \(row) from \
-      source \(info.draggingSource ?? "NOT FOUND")
-      """.log()
+      "Unable to validate drop for drag operation \(dropOperation) at row \(row) from source \(info.draggingSource ?? "NOT FOUND")".log()
       return []
     }
     
@@ -156,8 +156,7 @@ extension AppliedModifiersVC {
     return .move
   }
   
-  func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo,
-                 row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+  func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
     /* Read the pasteboard items and ensure there is at least one item,
      find the string of the first pasteboard item and search the datasource
      for the index of the matching string */

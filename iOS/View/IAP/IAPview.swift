@@ -93,8 +93,11 @@ struct IAPphone: View {
       FeaturesText(version: .pro)
     }
     .padding(EdgeInsets(top: 10, leading: 10.0, bottom: 44, trailing: 10.0))
-    .simpleAlert(isPresented: $productStore.showAlert, title: productStore.alertTitle,
-                 message: productStore.alertMessage)
+    .simpleAlert(
+      isPresented: $productStore.showAlert,
+      title: productStore.alertTitle,
+      message: productStore.alertMessage
+    )
   }
 }
 
@@ -158,8 +161,8 @@ struct PackageGroup: View {
   }
   
   @ViewBuilder var subscriptionCards: some View {
-    view(forID: ProductStore.MONTHLYID)
-    view(forID: ProductStore.YEARLYID)
+    view(forID: ProductStore.monthlyIdentifier)
+    view(forID: ProductStore.yearlyIdentifier)
   }
   
   @ViewBuilder func view(forID productID: String) -> some View {
@@ -177,7 +180,7 @@ struct PackageGroup: View {
   }
   
   @ViewBuilder var oneTimeCard: some View {
-    view(forID: ProductStore.LIFETIMEID)
+    view(forID: ProductStore.lifetimeIdentifier)
     //        PriceCard(price: "$ 49.99", duration: "lifetime, special launch offer", description: "Hurry, limited period only", color: Color.blue.opacity(0.7))
   }
   
@@ -203,7 +206,7 @@ struct PackageGroup: View {
         Purchases.shared.restorePurchases { (purchaserInfo, error) in
           productStore.isLoading = false
           // ... check purchaserInfo to see if entitlement is now active
-          if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENTID] {
+          if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.entitlementIdentifier] {
             "\(paidEntitlement)".log()
             if paidEntitlement.isActive {
               productStore.state = .restored
@@ -230,15 +233,17 @@ struct PackageView: View {
       .contentShape(Rectangle())
       .onTapGesture {
         productStore.isLoading = true
-        // swiftlint:disable all
         Purchases.shared.purchase(package: package, completion: handlePurchase)
-        // swiftlint:enable all
       }
   }
   
   @MainActor
-  func handlePurchase(transaction: StoreTransaction?, purchaserInfo: CustomerInfo?,
-                      error: NSError?, userCancelled: Bool) {
+  func handlePurchase(
+    transaction: StoreTransaction?,
+    purchaserInfo: CustomerInfo?,
+    error: NSError?,
+    userCancelled: Bool
+  ) {
     productStore.isLoading = false
     
 #if DEBUG
@@ -261,7 +266,7 @@ struct PackageView: View {
       productStore.alertTitle = "What stopped you?"
       productStore.alertMessage = ProductStore.userCancelled
       productStore.showAlert = true
-    } else if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENTID] {
+    } else if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.entitlementIdentifier] {
       "\(paidEntitlement)".log()
       if paidEntitlement.isActive {
         productStore.state = .transacted
@@ -288,9 +293,9 @@ struct PackageView: View {
   
   var color: Color {
     switch package.identifier {
-    case ProductStore.MONTHLYID: return Color.pink.opacity(0.6)
-    case ProductStore.YEARLYID: return Color.green.opacity(0.7)
-    case ProductStore.LIFETIMEID: return Color.blue.opacity(0.7)
+    case ProductStore.monthlyIdentifier: return Color.pink.opacity(0.6)
+    case ProductStore.yearlyIdentifier: return Color.green.opacity(0.7)
+    case ProductStore.lifetimeIdentifier: return Color.blue.opacity(0.7)
     default:
       "Unknown identifier \(package.storeProduct.productIdentifier)".log()
       return Color.yellow

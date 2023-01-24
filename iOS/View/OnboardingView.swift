@@ -167,10 +167,12 @@ struct DetailView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
   static var detailModel: DetailModel {
-    DetailModel(title: "Adjust preview scale",
-                description: "The preview scale will size up the symbol to help you design pixel perfect symbols.",
-                imageName: "rectangle.and.arrow.up.right.and.arrow.down.left",
-                imageColor: Color.purple.opacity(0.9))
+    DetailModel(
+      title: "Adjust preview scale",
+      description: "The preview scale will size up the symbol to help you design pixel perfect symbols.",
+      imageName: "rectangle.and.arrow.up.right.and.arrow.down.left",
+      imageColor: Color.purple.opacity(0.9)
+    )
   }
   
   static var previews: some View {

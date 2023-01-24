@@ -58,41 +58,69 @@ extension AppDelegate: NSToolbarDelegate {
     return [.sidebar, .favorites, .search, .moreOptions]
   }
   
-  func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
-               willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+  func toolbar(
+    _ toolbar: NSToolbar,
+    itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+    willBeInsertedIntoToolbar flag: Bool
+  ) -> NSToolbarItem? {
     switch itemIdentifier {
     case NSToolbarItem.Identifier.sidebar:
-      let button = NSButton(image: NSImage(systemSymbolName: "sidebar.left", accessibilityDescription: nil)!,
-                            target: Router.shared.splitVC, action: #selector(Router.shared.splitVC.toggleSidebar))
+      let button = NSButton(
+        image: NSImage(systemSymbolName: "sidebar.left", accessibilityDescription: nil)!,
+        target: Router.shared.splitVC,
+        action: #selector(Router.shared.splitVC.toggleSidebar)
+      )
       button.bezelStyle = .texturedRounded
       //            button.keyEquivalent = "0"
       //            button.keyEquivalentModifierMask = .command
-      let item = customToolbarItem(itemIdentifier: .sidebar, label: "Sidebar", paletteLabel: "Sidebar",
-                                   toolTip: "Show/Hide Sidebar", itemContent: button)
+      let item = customToolbarItem(
+        itemIdentifier: .sidebar,
+        label: "Sidebar",
+        paletteLabel: "Sidebar",
+        toolTip: "Show/Hide Sidebar",
+        itemContent: button
+      )
       item?.isNavigational = true
       return item
     case NSToolbarItem.Identifier.favorites:
-      let item = customToolbarItem(itemIdentifier: .sidebar, label: "Favorite",
-                                   paletteLabel: "Favorite", toolTip: "Show/Hide favorite symbols",
-                                   itemContent: Router.shared.splitVC.iconsVC.favoritesButton)
+      let item = customToolbarItem(
+        itemIdentifier: .sidebar,
+        label: "Favorite",
+        paletteLabel: "Favorite",
+        toolTip: "Show/Hide favorite symbols",
+        itemContent: Router.shared.splitVC.iconsVC.favoritesButton
+      )
       return item
       //            return favoriteItem
     case NSToolbarItem.Identifier.search:
       return Router.shared.splitVC.iconsVC.searchItem
     case NSToolbarItem.Identifier.updgrade:
-      return customToolbarItem(itemIdentifier: .updgrade, label: "Buy Pro", paletteLabel: "Upgrade",
-                               toolTip: "Upgrade to Swimbols Pro", itemContent: Router.shared.splitVC.upgradeButton)
+      return customToolbarItem(
+        itemIdentifier: .updgrade,
+        label: "Buy Pro",
+        paletteLabel: "Upgrade",
+        toolTip: "Upgrade to Swimbols Pro",
+        itemContent: Router.shared.splitVC.upgradeButton
+      )
     case NSToolbarItem.Identifier.moreOptions:
-      return customToolbarItem(itemIdentifier: .moreOptions, label: "More options", paletteLabel: "Options",
-                               toolTip: "More options", itemContent: NSHostingView(rootView: SWSettingsView()))
+      return customToolbarItem(
+        itemIdentifier: .moreOptions,
+        label: "More options",
+        paletteLabel: "Options",
+        toolTip: "More options",
+        itemContent: NSHostingView(rootView: SWSettingsView())
+      )
     default:
       return nil
     }
   }
   
   var favoriteItem: NSTrackingSeparatorToolbarItem {
-    let item = NSTrackingSeparatorToolbarItem(identifier: .favorites,
-                                              splitView: Router.shared.splitVC.splitView, dividerIndex: 1)
+    let item = NSTrackingSeparatorToolbarItem(
+      identifier: .favorites,
+      splitView: Router.shared.splitVC.splitView,
+      dividerIndex: 1
+    )
     //        let button = NSButton(image: NSImage(systemSymbolName: "heart.fill", accessibilityDescription: nil)!,
     //                              target: Router.shared.splitVC.iconsVC, action: #selector(Router.shared.splitVC.iconsVC.showFavorites))
     //        button.bezelStyle = .texturedRounded
@@ -112,7 +140,8 @@ extension AppDelegate: NSToolbarDelegate {
     label: String,
     paletteLabel: String,
     toolTip: String,
-    itemContent: NSView) -> NSToolbarItem? {
+    itemContent: NSView
+  ) -> NSToolbarItem? {
       let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
       
       toolbarItem.label = label

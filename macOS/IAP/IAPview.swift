@@ -94,8 +94,11 @@ struct IAPphone: View {
     }
     .padding(EdgeInsets(top: 10, leading: 10.0, bottom: 44, trailing: 10.0))
     
-    .simpleAlert(isPresented: $productStore.showAlert, title: productStore.alertTitle,
-                 message: productStore.alertMessage)
+    .simpleAlert(
+      isPresented: $productStore.showAlert,
+      title: productStore.alertTitle,
+      message: productStore.alertMessage
+    )
   }
 }
 
@@ -146,16 +149,16 @@ struct PackageGroup: View {
     }
   }
   
-  @State var selection: String = ProductStore.LIFETIMEID
+  @State var selection: String = ProductStore.lifetimeIdentifier
   
   @ViewBuilder var radioGroup: some View {
     Text("Upgrade to Swimbols Pro to unlock all features and support the continuous development of the app.")
       .multilineTextAlignment(.center)
       .padding(.top)
     Picker("", selection: $selection, content: {
-      card(forID: ProductStore.MONTHLYID).tag(ProductStore.MONTHLYID)
-      card(forID: ProductStore.YEARLYID).tag(ProductStore.YEARLYID)
-      card(forID: ProductStore.LIFETIMEID).tag(ProductStore.LIFETIMEID)
+      card(forID: ProductStore.monthlyIdentifier).tag(ProductStore.monthlyIdentifier)
+      card(forID: ProductStore.yearlyIdentifier).tag(ProductStore.yearlyIdentifier)
+      card(forID: ProductStore.lifetimeIdentifier).tag(ProductStore.lifetimeIdentifier)
     })
     .pickerStyle(RadioGroupPickerStyle())
     
@@ -172,10 +175,11 @@ struct PackageGroup: View {
   
   @ViewBuilder func card(forID productID: String) -> some View {
     if let package = productStore.offering?[productID] {
-      Text("""
-            \(Text(package.localizedPriceString).font(.title)), \(package.storeProduct.localizedTitle) \
-             \n\(Text(package.storeProduct.localizedDescription).foregroundColor(.secondary))
-            """)
+      Text( """
+      \(Text(package.localizedPriceString).font(.title)), \(package.storeProduct.localizedTitle) \
+      \n\(Text(package.storeProduct.localizedDescription).foregroundColor(.secondary))
+      """
+      )
         .padding(.small)
     }
   }
@@ -197,15 +201,13 @@ struct PackageGroup: View {
         Purchases.shared.restorePurchases { (purchaserInfo, error) in
           productStore.isLoading = false
           // ... check purchaserInfo to see if entitlement is now active
-          if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENTID] {
+          if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.entitlementIdentifier] {
             "\(paidEntitlement)".log()
             if paidEntitlement.isActive {
               setPurchased()
             } else {
               productStore.alertTitle = "Restore failed"
-              productStore.alertMessage = """
-                  Kindly ensure you have already bought the product and try restoring again later.
-                  """
+              productStore.alertMessage = "Kindly ensure you have already bought the product and try restoring again later."
               productStore.showAlert = true
             }
             // Unlock that great "pro" content
@@ -216,9 +218,14 @@ struct PackageGroup: View {
         }
       }
   }
+  
 @MainActor
-  func handlePurchase(transaction: StoreTransaction?, purchaserInfo: CustomerInfo?,
-                      error: Error?, userCancelled: Bool) {
+  func handlePurchase(
+    transaction: StoreTransaction?,
+    purchaserInfo: CustomerInfo?,
+    error: Error?,
+    userCancelled: Bool
+  ) {
     productStore.isLoading = false
     
 #if DEBUG
@@ -239,7 +246,7 @@ struct PackageGroup: View {
       productStore.alertTitle = "What stopped you?"
       productStore.alertMessage = ProductStore.userCancelled
       productStore.showAlert = true
-    } else if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.ENTITLEMENTID] {
+    } else if let paidEntitlement = purchaserInfo?.entitlements[ProductStore.entitlementIdentifier] {
       "\(paidEntitlement)".log()
       if paidEntitlement.isActive {
         setPurchased()

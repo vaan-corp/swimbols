@@ -34,8 +34,12 @@ struct MobileView: View {
   }
   
   func upgradeAlert() -> Alert {
-    Alert(title: Text("Upgrade Swimbols?"), message: Text(alertMessage),
-          primaryButton: upgradeButton, secondaryButton: cancelButton)
+    Alert(
+      title: Text("Upgrade Swimbols?"),
+      message: Text(alertMessage),
+      primaryButton: upgradeButton,
+      secondaryButton: cancelButton
+    )
   }
   
   var alertMessage: String {

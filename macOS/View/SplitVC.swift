@@ -53,8 +53,12 @@ struct ContentWrapper: View {
   }
   
   func upgradeAlert() -> Alert {
-    Alert(title: Text("Upgrade Swimbols?"), message: Text(alertMessage),
-          primaryButton: upgradeAlertButton, secondaryButton: cancelButton)
+    Alert(
+      title: Text("Upgrade Swimbols?"),
+      message: Text(alertMessage),
+      primaryButton: upgradeAlertButton,
+      secondaryButton: cancelButton
+    )
   }
   
   var alertMessage: String {
@@ -65,8 +69,11 @@ struct ContentWrapper: View {
   }
   
   func thankYouAlert() -> Alert {
-    Alert(title: Text("Thank you for \(productStore.state == .restored ? "continuing with us" : "purchasing")!"),
-          message: Text(messageString), dismissButton: .cancel(Text("Continue")))
+    Alert(
+      title: Text("Thank you for \(productStore.state == .restored ? "continuing with us" : "purchasing")!"),
+      message: Text(messageString),
+      dismissButton: .cancel(Text("Continue"))
+    )
   }
   
   var messageString: String {
